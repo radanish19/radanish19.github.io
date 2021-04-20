@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<title>x86_64 operating system | Cao Assignement</title>
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.82.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="http://example.org/css/index.css">
+<link rel="canonical" href="http://example.org/">
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Cao Assignement">
+
+<header>
+  
+    <a href="http://example.org/" class="title">Cao Assignement</a>
+  
+  
+</header>
+
+
+
+
+  
+
+
+
+
+<article>
+  <header><h1>X86 64 operating system</h1></header>
+  <ul class="archive">
+  </ul>
+  <h2 id="by-danish-rasheed">By Danish Rasheed</h2>
+<h3 id="task1">Task1</h3>
+<p>Tools used were; docker,qemu,VSCODE.</p>
+<p>An image was created in the docker container in the buildenv folder named myos. The Dockerfile should be named exactly as stated because incorrect format will generate an error.
+After the image was processed, some asm files were created.I used the multiboot2 specification. The header.asm defined the information for our architecture along with some checksum value and a magic number which is required by multiboot2.
+Initially an ok was printed using assembly, this code was written in a main.asm and ok was printed using an hex value which was moved into an address for video memory.
+Then a linker file was created which specified how the operating system will be linked together. It contained two sections; boot section which had the multiboot header and than a text section which conatined all cpu instructions. Then a grub.cnfg file was created which created an iso file inside a kernel.bin folder.
+To speed along the build process a makefile was created which basically just rebuilds only those files that were modified. Inside here the iso file was created using grub-mkrescue command. After this the operating sysytem was emulated using qemu by giving it the path to the iso file.
+Qemu had to be first added to the path by modifying the enironment variables for the system. After the emulation was successful, an ok was printed.</p>
+<h3 id="task-2">Task 2</h3>
+<p>The operating system built so far was 32 bit which had to be converted to 64 bit by using assembly and concepts of stack and paging. All the segemnts were initialised to 0 for main64.asm to work. After that c code was written to print any text on screen.
+All the printing interface was written in a print.h file,it contained all the print functions and an enum for storing colours for the text. Print.h was then used as a header file in the main.c and print.c file. When the program is emulated, the screen is at first cleared using print_clear function which is defined in print.h and implemented in print.c. The string is printed using print_str function written in print.c file. This function takes in a null terminated array and loops unitl null characted is found, until it is found it prints the character in current array index onto the screen. SEECS is then printed using this function, by passing to the function a string generated from a  text to ascii art generator.</p>
+<h3 id="ouput">Ouput:</h3>
+<p><img src="/images/Ouput.PNG" alt=""></p>
+
+</article>
+
+
+
+
+
+</html>
